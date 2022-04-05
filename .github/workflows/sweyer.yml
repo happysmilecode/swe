@@ -1,0 +1,17 @@
+name: Sweyer
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v3
+
+      - name: 🏗 Build and test Sweyer
+        uses: ./.github/workflows/build_and_test
+        with:
+          testing_arguments: --coverage
+
+      - name: ☂ Upload Code Coverage
+        uses: codecov/codecov-action@v3
